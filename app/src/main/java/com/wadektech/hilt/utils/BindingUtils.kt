@@ -3,7 +3,7 @@ package com.wadektech.hilt.utils
 import androidx.databinding.BindingAdapter
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.RecyclerView
-import com.wadektech.hilt.data.Posts
+import com.wadektech.hilt.data.domainModel.Posts
 import com.wadektech.hilt.ui.adapter.PostsAdapter
 import timber.log.Timber
 

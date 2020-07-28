@@ -1,4 +1,4 @@
-package com.wadektech.hilt.data
+package com.wadektech.hilt.data.domainModel
 
 data class Posts (
     val body: String,

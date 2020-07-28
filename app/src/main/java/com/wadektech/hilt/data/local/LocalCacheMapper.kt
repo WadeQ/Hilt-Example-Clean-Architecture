@@ -1,6 +1,6 @@
 package com.wadektech.hilt.data.local
 
-import com.wadektech.hilt.data.Posts
+import com.wadektech.hilt.data.domainModel.Posts
 import com.wadektech.hilt.utils.PojoMapper
 import javax.inject.Inject
 
