@@ -22,10 +22,10 @@ constructor(
         emit(NetworkStatus.Loading)
         try {
             val posts = apiService.getAllPostsAsync()
-            val postsList = networkMapper.mapFromPojoList(posts)
-
+            val postsList = networkMapper.mapFromEntityList(posts)
+            postsDao.saveAllPosts(localCacheMapper.mapToEntityList(postsList))
             val cachedPosts = postsDao.getAllPosts()
-            emit(NetworkStatus.SUCCESS(localCacheMapper.mapFromPojoList(cachedPosts)))
+            emit(NetworkStatus.SUCCESS(localCacheMapper.mapFromEntityList(cachedPosts)))
         } catch (e : Exception){
             emit(NetworkStatus.ERROR(e))
         }

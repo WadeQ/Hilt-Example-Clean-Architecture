@@ -7,25 +7,30 @@ import javax.inject.Inject
 class LocalCacheMapper
 @Inject
 constructor(): PojoMapper<LocalPosts, Posts> {
-    override fun mapFromPojo(pojo: LocalPosts): Posts {
-       return Posts(
-           id = pojo.id,
-           title = pojo.title,
-           body = pojo.body,
-           userId = pojo.userId
-       )
-    }
 
-    override fun mapToPojo(posts: Posts): LocalPosts {
-        return LocalPosts(
-            id = posts.id,
-            title = posts.title,
-            body = posts.body,
-            userId = posts.userId
+    override fun mapFromEntity(entity: LocalPosts): Posts {
+        return Posts(
+            id = entity.id,
+            userId = entity.userId,
+            body = entity.body,
+            title = entity.title
         )
     }
 
-    fun mapFromPojoList(pojos : List<LocalPosts>): List<Posts>{
-        return  pojos.map { mapFromPojo(it) }
+    override fun mapToEntity(domainModel: Posts): LocalPosts {
+       return LocalPosts(
+           id = domainModel.id,
+           userId = domainModel.userId,
+           body = domainModel.body,
+           title = domainModel.title
+       )
+    }
+
+    fun mapFromEntityList(entities : List<LocalPosts>): List<Posts>{
+        return  entities.map { mapFromEntity(it) }
+    }
+
+    fun mapToEntityList(domainModels: List<Posts>) : List<LocalPosts>{
+        return domainModels.map { mapToEntity(it) }
     }
 }

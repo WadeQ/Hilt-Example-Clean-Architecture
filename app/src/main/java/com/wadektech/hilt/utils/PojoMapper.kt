@@ -1,9 +1,9 @@
 package com.wadektech.hilt.utils
 
-interface PojoMapper<Pojo, Posts> {
+interface PojoMapper<Entity, DomainModel> {
 
-    fun  mapFromPojo(pojo: Pojo) : Posts
+    fun  mapFromEntity(entity: Entity) : DomainModel
 
-    fun  mapToPojo(posts: Posts) : Pojo
+    fun  mapToEntity(domainModel: DomainModel) : Entity
 
 }
