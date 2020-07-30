@@ -4,7 +4,7 @@
     <data>
         <variable
             name="post"
-            type="com.wadektech.hilt.data.local.domainModel.Posts" />
+            type="com.wadektech.hilt.data.domainModel.Posts" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

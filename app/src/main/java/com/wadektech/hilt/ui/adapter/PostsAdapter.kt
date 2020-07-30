@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.wadektech.hilt.data.domainModel.Posts
 import com.wadektech.hilt.databinding.PostsListItemBinding
 
-class PostsAdapter : PagedListAdapter<Posts, PostsAdapter.ViewHolder>(PostsDiffUtil()) {
+class PostsAdapter : ListAdapter<Posts, PostsAdapter.ViewHolder>(PostsDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
