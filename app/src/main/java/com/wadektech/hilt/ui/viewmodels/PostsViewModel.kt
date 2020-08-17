@@ -3,6 +3,7 @@ package com.wadektech.hilt.ui.viewmodels
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import androidx.paging.DataSource
 import com.wadektech.hilt.data.domainModel.Posts
 import com.wadektech.hilt.data.repository.PostsRepository
 import com.wadektech.hilt.utils.NetworkStatus
@@ -18,8 +19,8 @@ constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _status : MutableLiveData<NetworkStatus<List<Posts>>> = MutableLiveData()
-    val status : LiveData<NetworkStatus<List<Posts>>>
+    private val _status : MutableLiveData<NetworkStatus<DataSource.Factory<Int,Posts>>> = MutableLiveData()
+    val status : MutableLiveData<NetworkStatus<DataSource.Factory<Int, Posts>>>
         get() = _status
 
     init {
@@ -44,6 +45,7 @@ constructor(
             }
         }
     }
+
 }
 
 

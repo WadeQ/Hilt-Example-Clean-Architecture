@@ -1,5 +1,6 @@
 package com.wadektech.hilt.data.local
 
+import androidx.paging.DataSource
 import com.wadektech.hilt.data.domainModel.Posts
 import com.wadektech.hilt.utils.PojoMapper
 import javax.inject.Inject
@@ -26,7 +27,7 @@ constructor(): PojoMapper<LocalPosts, Posts> {
        )
     }
 
-    fun mapFromEntityList(entities : List<LocalPosts>): List<Posts>{
+    fun mapFromEntityList(entities: DataSource.Factory<Int, LocalPosts>): DataSource.Factory<Int, Posts> {
         return  entities.map { mapFromEntity(it) }
     }
 
