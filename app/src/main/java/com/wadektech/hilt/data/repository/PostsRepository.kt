@@ -36,7 +36,7 @@ constructor(
         }
     }
 
-    suspend fun getAllPostsFromLocal() : DataSource.Factory<Int, Posts> {
+    fun getAllPostsFromLocal() : DataSource.Factory<Int, Posts> {
         val cachedPosts = postsDao.getAllPosts()
         return localCacheMapper.mapFromEntityList(cachedPosts)
     }

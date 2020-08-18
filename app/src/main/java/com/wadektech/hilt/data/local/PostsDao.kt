@@ -9,8 +9,8 @@ import androidx.room.Query
 @Dao
 interface PostsDao {
     @Query("SELECT * FROM posts_db ORDER BY id ASC")
-    suspend fun getAllPosts(): DataSource.Factory<Int,LocalPosts>
+    fun getAllPosts(): DataSource.Factory<Int,LocalPosts>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveAllPosts(posts: List<LocalPosts>)
+    fun saveAllPosts(posts: List<LocalPosts>)
 }

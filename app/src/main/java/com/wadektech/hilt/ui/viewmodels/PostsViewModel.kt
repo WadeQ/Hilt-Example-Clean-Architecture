@@ -4,6 +4,8 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import androidx.paging.DataSource
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.wadektech.hilt.data.domainModel.Posts
 import com.wadektech.hilt.data.repository.PostsRepository
 import com.wadektech.hilt.utils.NetworkStatus
@@ -19,33 +21,23 @@ constructor(
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _status : MutableLiveData<NetworkStatus<DataSource.Factory<Int,Posts>>> = MutableLiveData()
-    val status : MutableLiveData<NetworkStatus<DataSource.Factory<Int, Posts>>>
-        get() = _status
+    private var _postsPagedList: LiveData<PagedList<Posts>>
 
     init {
-
+        getAllPostsFromRemote()
+        val factory : DataSource.Factory<Int, Posts> = postsRepository.getAllPostsFromLocal()
+        val pagedListBuilder: LivePagedListBuilder<Int, Posts> = LivePagedListBuilder<Int, Posts>(factory,
+            25)
+        _postsPagedList = pagedListBuilder.build()
     }
 
-    sealed class MainStateEvent {
-        object GetPostsFromRemoteEvent : MainStateEvent()
+    fun getAllPosts() : LiveData<PagedList<Posts>>{
+       return _postsPagedList
     }
 
-    @ExperimentalCoroutinesApi
-    fun setStateEvent(mainStateEvent: MainStateEvent){
-        viewModelScope.launch {
-            when(mainStateEvent){
-                is MainStateEvent.GetPostsFromRemoteEvent -> {
-                    postsRepository.getAllPostsFromRemote()
-                        .onEach {status ->
-                            _status.value = status
-                        }
-                        .launchIn(viewModelScope)
-                }
-            }
-        }
+    private fun getAllPostsFromRemote() = viewModelScope.launch {
+       postsRepository.getAllPostsFromRemote()
     }
-
 }
 
 
