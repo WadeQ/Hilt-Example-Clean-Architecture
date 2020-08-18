@@ -8,10 +8,8 @@ import com.wadektech.hilt.data.domainModel.Posts
 import com.wadektech.hilt.ui.adapter.PostsAdapter
 import timber.log.Timber
 
-
-
 @BindingAdapter("postsBindingAdapter")
-fun bindConcertsAdapter(recyclerView: RecyclerView, posts: List<Posts>?){
+fun bindPostsAdapter(recyclerView: RecyclerView, posts: List<Posts>?){
     val adapter = recyclerView.adapter as PostsAdapter
     Timber.d("binding adapter list size is: ${posts?.size}")
     adapter.submitList(posts)

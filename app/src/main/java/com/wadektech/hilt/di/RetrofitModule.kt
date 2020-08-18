@@ -1,5 +1,6 @@
 package com.wadektech.hilt.di
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.wadektech.hilt.data.remote.ApiService
@@ -28,8 +29,10 @@ object RetrofitModule {
     @Provides
     fun provideRetrofit(moshi: Moshi): Retrofit.Builder{
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .baseUrl(Constants.BASE_URL)
+
     }
 
     @Singleton

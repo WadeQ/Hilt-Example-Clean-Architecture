@@ -1,8 +1,8 @@
 package com.wadektech.hilt.data.remote
 
 import com.wadektech.hilt.data.domainModel.Posts
-import com.wadektech.hilt.data.local.LocalPosts
 import com.wadektech.hilt.utils.PojoMapper
+import kotlinx.coroutines.Deferred
 import javax.inject.Inject
 
 
@@ -28,7 +28,7 @@ constructor() : PojoMapper<RemotePosts, Posts> {
         )
     }
 
-    fun mapFromEntityList(remotePosts:  List<RemotePosts>) : List<Posts>{
+    fun mapFromEntityList(remotePosts: List<RemotePosts>) : List<Posts>{
         return remotePosts.map { mapFromEntity(it) }
     }
 }

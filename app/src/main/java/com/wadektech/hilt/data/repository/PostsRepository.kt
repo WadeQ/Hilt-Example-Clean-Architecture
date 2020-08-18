@@ -1,18 +1,15 @@
 package com.wadektech.hilt.data.repository
 
-import android.annotation.SuppressLint
 import androidx.paging.DataSource
 import com.wadektech.hilt.data.domainModel.Posts
 import com.wadektech.hilt.data.local.LocalCacheMapper
-import com.wadektech.hilt.data.local.LocalPosts
 import com.wadektech.hilt.data.local.PostsDao
 import com.wadektech.hilt.data.remote.ApiService
 import com.wadektech.hilt.data.remote.NetworkMapper
-import com.wadektech.hilt.utils.NetworkStatus
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class PostsRepository
@@ -24,15 +21,20 @@ constructor(
     private val localCacheMapper: LocalCacheMapper
 )
 {
+    private var job = Job()
+    private val _coroutineScope = CoroutineScope(job + Dispatchers.IO)
 
-    suspend fun getAllPostsFromRemote()  {
-        try {
-            val posts = apiService.getAllPostsAsync().await()
-            val postsList = networkMapper.mapFromEntityList(posts)
-            Timber.d("Results are ${postsList.size}")
-            postsDao.saveAllPosts(localCacheMapper.mapToEntityList(postsList))
-        } catch (e : Exception){
-            Timber.d("Failure due to ${e.message}")
+    fun getAllPostsFromRemote()  {
+        _coroutineScope.launch {
+            try {
+                val postsList = apiService.getAllPostsAsync()
+                val posts = postsList.await()
+                val fetchedPosts = networkMapper.mapFromEntityList(posts)
+                Timber.d("Results are ${fetchedPosts.size}")
+                postsDao.saveAllPosts(localCacheMapper.mapToEntityList(fetchedPosts))
+            } catch (e : Exception){
+                Timber.d("Failure due to ${e.message}")
+            }
         }
     }
 
