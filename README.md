@@ -24,6 +24,7 @@ The UI test run normally, either on a device or an emulator, without any special
     * [Livedata](https://developer.android.com/topic/libraries/architecture/livedata)
     * [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
     * [Retrofit](https://square.github.io/retrofit/)
+    * [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview)
     * [Jetpack](https://developer.android.com/jetpack)
         * [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle)
         * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
