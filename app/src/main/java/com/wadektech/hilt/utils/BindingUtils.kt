@@ -1,11 +1,9 @@
 package com.wadektech.hilt.utils
 
 import androidx.databinding.BindingAdapter
-import androidx.paging.PagedList
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.wadektech.hilt.data.domainModel.Posts
-import com.wadektech.hilt.ui.adapter.PostsAdapter
+import com.wadektech.hilt.domain.models.Posts
+import com.wadektech.hilt.presentation.adapter.PostsAdapter
 import timber.log.Timber
 
 @BindingAdapter("postsBindingAdapter")

@@ -1,7 +1,7 @@
-package com.wadektech.hilt.data.local
+package com.wadektech.hilt.data.local.models
 
 import androidx.paging.DataSource
-import com.wadektech.hilt.data.domainModel.Posts
+import com.wadektech.hilt.domain.models.Posts
 import com.wadektech.hilt.utils.PojoMapper
 import javax.inject.Inject
 

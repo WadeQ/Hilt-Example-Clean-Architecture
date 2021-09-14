@@ -1,10 +1,11 @@
 package com.wadektech.hilt.di
 
-import com.wadektech.hilt.data.local.LocalCacheMapper
-import com.wadektech.hilt.data.local.PostsDao
+import com.wadektech.hilt.data.local.models.LocalCacheMapper
+import com.wadektech.hilt.data.local.room.PostsDao
 import com.wadektech.hilt.data.remote.ApiService
-import com.wadektech.hilt.data.remote.NetworkMapper
-import com.wadektech.hilt.data.repository.PostsRepository
+import com.wadektech.hilt.data.remote.model.NetworkMapper
+import com.wadektech.hilt.data.repository.PostsRepositoryImpl
+import com.wadektech.hilt.domain.repository.IPostsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +23,11 @@ object RepositoryModule {
         apiService: ApiService,
         localCacheMapper: LocalCacheMapper,
         networkMapper: NetworkMapper
-    ) : PostsRepository {
-        return PostsRepository(postsDao,apiService,networkMapper,localCacheMapper)
-    }
+    ) = PostsRepositoryImpl(
+        postsDao,
+        apiService,
+        networkMapper,
+        localCacheMapper
+    ) as IPostsRepository
+
 }

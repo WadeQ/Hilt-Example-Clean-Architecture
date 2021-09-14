@@ -2,8 +2,8 @@ package com.wadektech.hilt.di
 
 import android.content.Context
 import androidx.room.Room
-import com.wadektech.hilt.data.local.PostsDao
-import com.wadektech.hilt.data.local.PostsDatabase
+import com.wadektech.hilt.data.local.room.PostsDao
+import com.wadektech.hilt.data.local.room.PostsDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,7 +30,7 @@ object RoomModule {
 
     @Singleton
     @Provides
-    fun providePostsDao(postsDatabase: PostsDatabase) : PostsDao{
+    fun providePostsDao(postsDatabase: PostsDatabase) : PostsDao {
         return postsDatabase.postsDao()
     }
 }

@@ -1,8 +1,7 @@
-package com.wadektech.hilt.data.remote
+package com.wadektech.hilt.data.remote.model
 
-import com.wadektech.hilt.data.domainModel.Posts
+import com.wadektech.hilt.domain.models.Posts
 import com.wadektech.hilt.utils.PojoMapper
-import kotlinx.coroutines.Deferred
 import javax.inject.Inject
 
 

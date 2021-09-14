@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/postsFragment"
-        android:name="com.wadektech.hilt.ui.views.PostsFragment"
+        android:name="com.wadektech.hilt.presentation.views.PostsFragment"
         android:label="fragment_posts"
         tools:layout="@layout/fragment_posts" />
 </navigation>

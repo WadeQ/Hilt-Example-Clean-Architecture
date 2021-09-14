@@ -7,13 +7,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.wadektech.hilt.ui.viewmodels.PostsViewModel" />
+            type="com.wadektech.hilt.presentation.viewmodels.PostsViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:background="#FEEAE6"
         android:layout_height="match_parent"
-        tools:context=".ui.MainActivity"
+        tools:context=".presentation.MainActivity"
         tools:ignore="ExtraText">
 
         <androidx.recyclerview.widget.RecyclerView

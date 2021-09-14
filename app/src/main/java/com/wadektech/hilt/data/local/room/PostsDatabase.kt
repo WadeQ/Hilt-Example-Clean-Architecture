@@ -1,8 +1,8 @@
-package com.wadektech.hilt.data.local
+package com.wadektech.hilt.data.local.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.wadektech.hilt.data.domainModel.Posts
+import com.wadektech.hilt.data.local.models.LocalPosts
 
 @Database(entities = [LocalPosts::class], version = 1, exportSchema = false)
 abstract class PostsDatabase : RoomDatabase(){

@@ -1,31 +1,30 @@
-package com.wadektech.hilt.ui.viewmodels
+package com.wadektech.hilt.presentation.viewmodels
 
-import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.wadektech.hilt.data.domainModel.Posts
-import com.wadektech.hilt.data.repository.PostsRepository
-import com.wadektech.hilt.utils.NetworkStatus
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import com.wadektech.hilt.domain.models.Posts
+import com.wadektech.hilt.data.repository.PostsRepositoryImpl
+import com.wadektech.hilt.domain.repository.IPostsRepository
 import kotlinx.coroutines.launch
 
 class PostsViewModel
 @ViewModelInject
 constructor(
-    private val postsRepository: PostsRepository,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    private val repository: IPostsRepository
 ) : ViewModel() {
 
-    private var _postsPagedList: LiveData<PagedList<Posts>>
+    private lateinit var _postsPagedList: LiveData<PagedList<Posts>>
 
     init {
         getAllPostsFromRemote()
-        val factory : DataSource.Factory<Int, Posts> = postsRepository.getAllPostsFromLocal()
+        initPagination()
+    }
+
+    private fun initPagination() {
+        val factory : DataSource.Factory<Int, Posts> = repository.getAllPostsFromLocal()
         val pagedListBuilder: LivePagedListBuilder<Int, Posts> = LivePagedListBuilder<Int, Posts>(factory,
             25)
         _postsPagedList = pagedListBuilder.build()
@@ -36,7 +35,7 @@ constructor(
     }
 
     private fun getAllPostsFromRemote() = viewModelScope.launch {
-       postsRepository.getAllPostsFromRemote()
+       repository.getAllPostsFromRemote()
     }
 }
 

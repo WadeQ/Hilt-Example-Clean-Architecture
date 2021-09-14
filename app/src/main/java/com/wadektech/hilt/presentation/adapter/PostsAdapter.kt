@@ -1,12 +1,11 @@
-package com.wadektech.hilt.ui.adapter
+package com.wadektech.hilt.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.wadektech.hilt.data.domainModel.Posts
+import com.wadektech.hilt.domain.models.Posts
 import com.wadektech.hilt.databinding.PostsListItemBinding
 
 class PostsAdapter : ListAdapter<Posts, PostsAdapter.ViewHolder>(PostsDiffUtil()) {

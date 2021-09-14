@@ -1,4 +1,4 @@
-package com.wadektech.hilt.ui.views
+package com.wadektech.hilt.presentation.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
